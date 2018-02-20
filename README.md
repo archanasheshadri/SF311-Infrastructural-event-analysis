@@ -10,3 +10,8 @@ I retrieved city infrastructure data from SF311 using their API endpoint, which 
 
 I performed exploratory data analysis to glean insights of most common issues/issue-types, locations with prone to issues, and spatio-temporal visualization of these issues on a city map. 
 
+Tools/Skills: 
+Programming: Python, R 
+Database: MySQL
+Visualization: ggplot2, dplyr, and ggmap 
+Report: R markdown
