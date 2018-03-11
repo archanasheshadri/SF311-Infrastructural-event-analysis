@@ -10,7 +10,7 @@ Loading a 247K row file with 16 columns into R can take awhile. We have used *re
 
 ```{r,warning=FALSE}
 library(readr)
-path <- "C:\\Users\\Archana\\OneDrive\\Coursera\\City event extraction\\311 data\\Case_Data_from_SF311.csv"
+path <- "C:\\Users\\Archana\\OneDrive\\City event extraction - journal\\City event extraction - old\\311 data\\Case_Data_from_SF311.csv"
 data <- read.csv(path,stringsAsFactors = FALSE)
 ```
 
