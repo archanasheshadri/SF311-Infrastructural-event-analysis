@@ -10,7 +10,7 @@ Loading a 247K row file with 16 columns into R can take awhile. We have used *re
 
 ```{r,warning=FALSE}
 library(readr)
-path <- "C:\\Users\\Archana\\OneDrive\\City event extraction - journal\\City event extraction - old\\311 data\\Case_Data_from_SF311.csv"
+path <- "Case_Data_from_SF311.csv"
 data <- read.csv(path,stringsAsFactors = FALSE)
 ```
 
@@ -89,6 +89,7 @@ We then plot the Lat and Long using *ggmap* from *ggplot2* package to visualize 
 
 ```{r,warning=FALSE,message=FALSE,fig.height=8,fig.width=10}
 library(ggmap)
+library(magrittr)
 data_split <- data.frame(do.call('rbind', strsplit(as.character(data$Point),',',fixed=TRUE)))
 data_split$X1 <- gsub("^[[:punct:]]", "", data_split$X1)
 data_split$X2 <- gsub("[[:punct:]]$", "", data_split$X2)
