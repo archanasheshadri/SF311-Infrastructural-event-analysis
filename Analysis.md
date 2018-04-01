@@ -1,10 +1,10 @@
-We have considered the [SF311
+I have considered the [SF311
 data](https://data.sfgov.org/City-Infrastructure/Case-Data-from-San-Francisco-311-SF311-/vw6y-z8j6)
 for the city infrastructural events in San Francisco,which contains a
 tabular list of reports. The duration of the data collected is from May
 2014 to August 2015.
 
-Loading a 247K row file with 16 columns into R can take awhile. We have
+Loading a 247K row file with 16 columns into R can take awhile. I have
 used *readr*, another R package by *ggplot2*, which grants access to a
 *read\_csv()* function that has nearly 10x the speed of the base
 *read.csv()* R function.
@@ -16,7 +16,7 @@ used *readr*, another R package by *ggplot2*, which grants access to a
 Number of Open requests
 -----------------------
 
-We first look into the requests that are not yet resolved(from Aug 2015
+I first looked into the requests that are not yet resolved(from Aug 2015
 till Dec 2015).
 
     library(plyr)
@@ -27,7 +27,7 @@ So there are still **6211 Open requests**!!
 
 Now lets see the agencies which are resposible for those Open requests.
 
-First, we *group\_by()* the Responsible.Agency, and then use
+First, I *group\_by()* the Responsible.Agency, and then use
 *summarize()* to perform an aggregate on each group; in this case, count
 how many entries for each agency. We can also ensure that the counts are
 in descending order to get the most number of open requests with respect
@@ -42,7 +42,7 @@ open requests)
                           arrange(desc(count))
     top_data_open_agencies <- head(data_open_agencies,10)
 
-We now plot the ouput using *ggplot2*.
+I now plot the ouput using *ggplot2*.
 
     library(ggplot2)
     g <- ggplot(top_data_open_agencies, aes(top_data_open_agencies$Responsible.Agency, top_data_open_agencies$count))
@@ -57,14 +57,14 @@ We now plot the ouput using *ggplot2*.
 
 ![](Analysis_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
-By visualizing the output we can say that **DPW BSSR Queue** has more
+By visualizing the output I can say that **DPW BSSR Queue** has more
 number of open requests**(1532 )** that are not yet resolved from Aug
 '15 till Dec '15.
 
 Common request types and their location
 ---------------------------------------
 
-We first look at the most common request or the most common
+I first look at the most common request or the most common
 infrastructural issue in the city of San Francisco.
 
     library(ascii)
@@ -136,12 +136,12 @@ infrastructural issue in the city of San Francisco.
 Lets make things interesting by plotting the locations with most number
 of requests.
 
-First, we split the 'Point' column in the data into latitude(Lat) and
+First, I split the 'Point' column in the data into latitude(Lat) and
 longitude(Long).Once the column is split, remove all the punctuations
-like '(' and ')' from Lat and Long columns. Next we get the rows for
+like '(' and ')' from Lat and Long columns. Next I get the rows for
 Street and Sidewalk Cleaning requests.
 
-We then plot the Lat and Long using *ggmap* from *ggplot2* package to
+I then plot the Lat and Long using *ggmap* from *ggplot2* package to
 visualize the locations for Street and Sidewalk Cleaning requests in
 SF.*ggmap* is used to visualize data on static maps from various online
 sources like Google maps and Stamen maps.
@@ -172,7 +172,7 @@ sources like Google maps and Stamen maps.
 
 ![](Analysis_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
-We can see that the concentration of requests are around the **Mission
+I can see that the concentration of requests are around the **Mission
 district** and **Financial district** localities. The responsible
 authorities can make use of this data and take required action for the
 requests.
@@ -183,30 +183,30 @@ look at the next section.
 Distribution of events
 ----------------------
 
-We have collected the data for more than a year(i.e, from May 2014 - Aug
+I have collected the data for more than a year(i.e, from May 2014 - Aug
 2015). So we look at events grouped for each month and distributed for
 all the weekdays for that month. This could be done by using *facet* a
 tool in *ggplot2*.
 
-We need to mould the data before we plot it.This requires us to get the
+I need to mould the data before we plot it.This requires us to get the
 month and the day of week for each requests.
 
 **Day of week**
 
-We get the day of week for each entry of the request using the column
+I get the day of week for each entry of the request using the column
 'Opened' using the function *weekdays()* which gives us the day of week
 for a given date.
 
 **Month**
 
-We use *strsplit()* to split a single date value to Month, Day and Year
+I use *strsplit()* to split a single date value to Month, Day and Year
 components, take the first value (Month), and convert that value to a
 numeric value (instead of text) For example, "08/12/2014" input returns
-8. Since this has to be done for every row in the data we use *sapply()*
+8. Since this has to be done for every row in the data I use *sapply()*
 function.
 
-Finally we count the number of requests for a given day of week and
-month.We group by 'Category', 'Month' and 'Dayofweek'.
+Finally I count the number of requests for a given day of week and
+month.I group by 'Category', 'Month' and 'Dayofweek'.
 
     Dayofweek <- weekdays(as.Date(data$Opened,"%m/%d/%Y"))
     data <- cbind(data,Dayofweek)
@@ -227,7 +227,7 @@ month.We group by 'Category', 'Month' and 'Dayofweek'.
     data_event_time$Month <- factor(data_event_time$Month, levels=c
     ('Jan','Feb','Mar','Apr','May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
 
-We plot heatmap for each 'Category' for a given day of week and month.
+I plot heatmap for each 'Category' for a given day of week and month.
 
     plot <- ggplot(data_event_time, aes(x = factor(Dayofweek, levels = c('Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday', 'Sunday')), y = Category, fill = count)) 
 
@@ -242,6 +242,6 @@ We plot heatmap for each 'Category' for a given day of week and month.
 
 The plot looks interesting!
 
-We can see that there are lot more requests during summer(May-Aug) and
+I can see that there are lot more requests during summer(May-Aug) and
 the requests are low during other months. Also the number of requests
 reduce a lot over the weekends!!
