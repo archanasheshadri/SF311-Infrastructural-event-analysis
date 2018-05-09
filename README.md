@@ -1,4 +1,4 @@
-# SF311-Infrastructural-event-analysis
+# SF311 Infrastructural event analysis
 
 This repository includes data analysis of the SF311 data related to infrastructural events(requests).
 
